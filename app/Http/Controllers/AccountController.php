@@ -35,7 +35,7 @@ class AccountController extends Controller
         ]);
 
         $credentials = [
-            'email' => $request->login_email,  // Map login_email back to email for authentication
+            'email' => $request->login_email,
             'password' => $request->password,
         ];
 
@@ -87,7 +87,7 @@ class AccountController extends Controller
                 'firstname' => trim($request->firstname),
                 'lastname' => trim($request->lastname),
                 'email' => strtolower(trim($request->email)),
-                'password' => Hash::make($request->password),
+                'password' => $request->password, // Remove Hash::make() - let the model handle it
                 'subscribed' => $request->has('subscribed') ? 1 : 0,
             ]);
 
